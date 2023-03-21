@@ -8,7 +8,7 @@ The project is a car management system that allows users to add, edit, and delet
 
 To get started with the project, follow these steps:
 
-1. Clone the repository to your local machine using the command `git clone https://github.com/your-username/car-management-system.git`.
+1. Clone the repository to your local machine using the command `git clone https://github.com/Saigunas/car-management-system.git`.
 
 2. Navigate to the project directory and run `composer install` to install the project's dependencies.
 
