@@ -3,7 +3,7 @@
         <div class="flex justify-center">
             <div class="w-full md:w-1/2">
                 <div class="bg-gray-800 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                    <div class="font-bold text-white mb-6">Koreguoti savininką</div>
+                    <div class="font-bold text-white mb-6">Redaguoti savininką</div>
                     <form method="post" action="{{ route('owners.update', $owner->id) }}">
                         @csrf
                         <div class="mb-4">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,14 @@ Route::post('/owners/{id}/update',[OwnerController::class,'update'])->name('owne
 Route::get('/owners/{id}/delete',[OwnerController::class,'delete'])->name('owners.delete');
 Route::get('/owners/create',[OwnerController::class, 'create'])->name('owners.create');
 Route::post('/owners/search',[OwnerController::class,'search'])->name('owners.search');
+
+Route::get('/cars',[CarController::class, 'index'])->name('cars.index');
+Route::post('/cars/save',[CarController::class, 'save'])->name('cars.save');
+Route::get('/cars/{id}/edit',[CarController::class, 'edit'])->name('cars.edit');
+Route::post('/cars/{id}/update',[CarController::class,'update'])->name('cars.update');
+Route::get('/cars/{id}/delete',[CarController::class,'delete'])->name('cars.delete');
+Route::get('/cars/create',[CarController::class, 'create'])->name('cars.create');
+Route::post('/cars/search',[CarController::class,'search'])->name('cars.search');
 
 Route::get('/', function () {
     return view('welcome');
