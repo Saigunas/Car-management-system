@@ -14,12 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $owners = Owner::factory()->count(100)->create();
+        Owner::factory()->count(100)->has(Car::factory()->count(rand(1,3)))->create();
 
-        foreach ($owners as $owner) {
-            Car::factory()->count(rand(1, 3))->create([
-                'owner_id' => $owner->id,
-            ]);
-        }
     }
 }
