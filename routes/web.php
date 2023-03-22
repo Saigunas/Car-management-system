@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/owners',[OwnerController::class, 'index'])->name('owners.index');
+Route::post('/owners/save',[OwnerController::class, 'save'])->name('owners.save');
+Route::get('/owners/{id}/edit',[OwnerController::class, 'edit'])->name('owners.edit');
+Route::post('/owners/{id}/update',[OwnerController::class,'update'])->name('owners.update');
+Route::get('/owners/{id}/delete',[OwnerController::class,'delete'])->name('owners.delete');
+Route::get('/owners/create',[OwnerController::class, 'create'])->name('owners.create');
+Route::post('/owners/search',[OwnerController::class,'search'])->name('owners.search');
 
 Route::get('/', function () {
     return view('welcome');
