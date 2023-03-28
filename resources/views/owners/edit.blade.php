@@ -8,21 +8,22 @@
                         @csrf
                         <div class="mb-4">
                             <label class="block text-gray-300 font-bold mb-2" for="name">
-                                Vardas:
+                                {{__('Name')}}:
                             </label>
                             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight bg-gray-700 focus:outline-none focus:shadow-outline"
                                    name="name" type="text" value="{{ $owner->name }}" required>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-300 font-bold mb-2" for="surname">
-                                Pavardė:
+                                {{__('Surname')}}:
                             </label>
                             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight bg-gray-700 focus:outline-none focus:shadow-outline"
                                    name="surname" type="text" value="{{ $owner->surname }}" required>
                         </div>
                         <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 type="submit">
-                            Išsaugoti
+                            {{__('Save')}}
+
                         </button>
                     </form>
                 </div>
