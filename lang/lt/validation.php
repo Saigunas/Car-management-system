@@ -12,6 +12,7 @@ return [
     | as the size rules. Feel free to tweak each of these messages here.
     |
     */
+    'reg_number.regex' => 'Formatas turi būti XXXYYY formate, kur X - raidė, Y skaičius',
 
     'accepted' => 'Laukas :attribute turi būti priimtas.',
     'accepted_if' => 'Laukas :attribute turi būti priimtas kai :other yra :value.',
@@ -179,6 +180,12 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'vardas',
+        'surname' => 'pavardė',
+        'brand' => 'gamintojas',
+        'reg_number' => 'registracijos numeris',
+        'owner' => 'savininkas',
+    ],
 
 ];

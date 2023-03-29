@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OwnerRequest;
 use App\Models\Owner;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,8 @@ class OwnerController extends Controller
         ]);
     }
 
-    public function update($id, Request $request){
+    public function update($id, OwnerRequest $request){
+        $request->validate($request->rules(), $request->messages());
         $owner=Owner::find($id);
         $owner->name=$request->name;
         $owner->surname=$request->surname;
@@ -40,7 +42,8 @@ class OwnerController extends Controller
         return redirect()->route("owners.index");
     }
 
-    public function save(Request $request){
+    public function save(OwnerRequest $request){
+        $request->validate($request->rules(), $request->messages());
         $owner=new Owner();
         $owner->name=$request->name;
         $owner->surname=$request->surname;

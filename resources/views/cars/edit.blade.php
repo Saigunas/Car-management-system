@@ -10,26 +10,27 @@
                             <label class="block text-gray-300 font-bold mb-2" for="reg_number">
                                 {{__('Registration number')}}:
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight bg-gray-700 focus:outline-none focus:shadow-outline"
-                                   name="reg_number" type="text" value="{{ $car->reg_number }}" required>
+                            <input value="{{ old('reg_number')?: $car->reg_number }}" class="@error('reg_number') is-invalid @enderror border rounded-md py-2 px-3 w-full bg-gray-700 text-gray-300" name="reg_number" type="text" required>
+                            <div class="invalid-feedback text-red-700">@error('reg_number') {{ $message }} @enderror</div>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-300 font-bold mb-2" for="brand">
-                                {{__('Model')}}:
+                                {{__('Brand')}}:
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight bg-gray-700 focus:outline-none focus:shadow-outline"
-                                   name="brand" type="text" value="{{ $car->brand }}" required>
+                            <input value="{{ old('brand')?: $car->brand }}" class="@error('brand') is-invalid @enderror border rounded-md py-2 px-3 w-full bg-gray-700 text-gray-300" name="brand" type="text" value="" required>
+                            <div class="invalid-feedback text-red-700">@error('brand') {{ $message }} @enderror</div>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-300 font-bold mb-2" for="owner_id">
                                 {{__('Owner')}}:
                             </label>
-                            <select class="form-input rounded-md shadow-sm mt-1 block w-full dark:bg-gray-700 text-gray-300" name="owner_id">
+                            <select value="{{ old('owner_id') }}" class="@error('brand') is-invalid @enderror form-input rounded-md shadow-sm mt-1 block w-full dark:bg-gray-700 text-gray-300" name="owner_id">
                                 <option value="">{{__('Select owner')}}</option>
                                 @foreach($owners as $owner)
                                     <option value="{{ $owner->id }}" @if($car->owner_id == $owner->id) selected @endif>{{ $owner->name }}</option>
                                 @endforeach
                             </select>
+                            <div class="invalid-feedback text-red-700">@error('owner_id') {{ $message }} @enderror</div>
                         </div>
                         <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 type="submit">

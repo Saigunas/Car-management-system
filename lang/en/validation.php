@@ -12,6 +12,7 @@ return [
     | as the size rules. Feel free to tweak each of these messages here.
     |
     */
+    'reg_number.regex' => 'The format must be XXXYYY, where X is a letter and Y is a number.',
 
     'accepted' => 'The :attribute must be accepted.',
     'accepted_if' => 'The :attribute must be accepted when :other is :value.',
@@ -179,6 +180,12 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'name',
+        'surname' => 'surname',
+        'brand' => 'brand',
+        'reg_number' => 'registration number',
+        'owner' => 'owner',
+    ],
 
 ];

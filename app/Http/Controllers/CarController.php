@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CarRequest;
 use App\Models\Car;
 use App\Models\Owner;
 use Illuminate\Http\Request;
@@ -32,7 +33,8 @@ class CarController extends Controller
         ]);
     }
 
-    public function update($id, Request $request){
+    public function update($id, CarRequest $request){
+        $request->validate($request->rules(), $request->messages());
         $car=Car::find($id);
         $car->reg_number=$request->reg_number;
         $car->brand=$request->brand;
@@ -42,7 +44,8 @@ class CarController extends Controller
         return redirect()->route("cars.index");
     }
 
-    public function save(Request $request){
+    public function save(CarRequest $request){
+        $request->validate($request->rules(), $request->messages());
         $car=new Car();
         $car->reg_number=$request->reg_number;
         $car->brand=$request->brand;
