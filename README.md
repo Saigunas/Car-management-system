@@ -28,3 +28,7 @@ Use the following log in to access update and delete operations:
 
 `Password: admin`
 
+## Problems
+
+It is possible that some tailwind classes will not load upon launching the project. If that is the case, please run `npm update tailwindcss`.
+
