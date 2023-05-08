@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarPhotoController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\ProfileController;
@@ -36,6 +37,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/cars',[CarController::class, 'index'])->name('cars.index');
     Route::post('/cars/search',[CarController::class,'search'])->name('cars.search');
+
+    Route::get('/carPhotos/{id}/delete', [CarPhotoController::class, 'delete'])->name('carPhotos.delete');
+    Route::post('/carPhotos/{id}/save',[CarPhotoController::class, 'save'])->name('carPhotos.save');
 });
 
 Route::get('/', function () {

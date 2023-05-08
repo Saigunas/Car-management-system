@@ -36,4 +36,7 @@ class Car extends Model
 
         return $query;
     }
+    public function photos(){
+        return $this->hasMany(CarPhoto::class);
+    }
 }

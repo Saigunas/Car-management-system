@@ -2,9 +2,10 @@
     <div class="container mt-6 mx-auto">
         <div class="flex justify-center">
             <div class="w-full md:w-1/2">
-                <div class="bg-gray-800 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <div class="bg-gray-800 shadow-md rounded px-8 pt-6 pb-8 mb-4 p-4">
                     <div class="font-bold text-white mb-6">{{__('Edit')}}</div>
-                    <form method="post" action="{{ route('cars.update', $car->id) }}">
+                    <form method="post" action="{{ route('cars.update', $car->id) }}"
+                          enctype="multipart/form-data">
                         @csrf
                         <div class="mb-4">
                             <label class="block text-gray-300 font-bold mb-2" for="reg_number">
@@ -37,6 +38,27 @@
                             {{__('Save')}}
                         </button>
                     </form>
+                    <div class="mb-4 rounded-md shadow-sm p-2 block w-full dark:bg-gray-700 text-gray-300">
+                        <div class="flex flex-row gap-4">
+                            @foreach ($car->photos as $photo)
+                                <div class="relative">
+                                    <img src="{{ asset('/storage/images/' . $photo->image) }}" style="width: 100px" class="object-cover">
+                                        <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" href="{{ route('carPhotos.delete', $photo->id) }}">{{__('Delete')}}</a>
+                                    </form>
+                                </div>
+                            @endforeach
+                        </div>
+                        <form method="post" action="{{ route('carPhotos.save', $car->id) }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="flex flex-col items-center mb-4">
+                                <input class="form-control" type="file" name="photos[]" multiple>
+                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4"
+                                        type="submit">
+                                    {{__('Save uploaded photos')}}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

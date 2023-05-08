@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CarRequest;
 use App\Models\Car;
+use App\Models\CarPhoto;
 use App\Models\Owner;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,7 @@ class CarController extends Controller
 
         $owners=Owner::all();
         $cars = Car::with(['owner'])->filter($filter)->orderBy('brand')->get();
+
         return view('cars.index', [
             'cars' => $cars,
             'owners' => $owners,
@@ -27,9 +29,10 @@ class CarController extends Controller
     }
     public function edit($id){
         $owners=Owner::all();
+
         return view("cars.edit",[
-            "car"=>Car::find($id),
-            "owners" => $owners
+            "car"=>Car::with('photos')->find($id),
+            "owners" => $owners,
         ]);
     }
 
@@ -39,6 +42,25 @@ class CarController extends Controller
         $car->reg_number=$request->reg_number;
         $car->brand=$request->brand;
         $car->owner_id=$request->owner_id;
+
+        $photos = $request->file('photos');
+
+        if ($photos) {
+            foreach ($photos as $photo) {
+                if ($photo->isValid()) {
+                    // Upload photo
+                    // $imageName = time() . '_' . $photo->getClientOriginalName();
+                    // $photo->storeAs('public/images', $imageName);
+                    $photo->store("/public/images");
+
+                    // Create new CarPhoto instance
+                    $carPhoto = new CarPhoto();
+                    $carPhoto->Car_ID = $id;
+                    $carPhoto->Image = $photo->hashName();;
+                    $carPhoto->save();
+                }
+            }
+        }
 
         $car->save();
         return redirect()->route("cars.index");
