@@ -20,7 +20,9 @@
                                     <select class="form-input rounded-md shadow-sm mt-1 block w-full dark:bg-slate-900 border-none" name="owner_id">
                                         <option value="">{{__('Select owner')}}</option>
                                         @foreach($owners as $owner)
+                                            @can('view', $owner)
                                             <option value="{{ $owner->id }}" @if($filter->owner_id == $owner->id) selected @endif>{{ $owner->name }}</option>
+                                            @endcan
                                         @endforeach
                                     </select>
                                 </div>
@@ -41,15 +43,22 @@
                             </thead>
                             <tbody>
                             @foreach($cars as $car)
+                                @can('viewAny', $car)
                                 <tr class="border-b dark:border-gray-700">
                                     <td class="px-4 py-2 dark:text-gray-300">{{ $car->reg_number }}</td>
                                     <td class="px-4 py-2 dark:text-gray-300">{{ $car->brand }}</td>
                                     <td class="px-4 py-2 dark:text-gray-300">{{ $car->owner->name }}</td>
                                     <td>
+                                        @can('update', $car)
                                         <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href="{{route('cars.edit', $car->id)}}">{{__('Edit')}}</a>
+                                        @endcan
+
+                                        @can('delete', $car)
                                         <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" href="{{route('cars.delete',$car->id)}}">{{__('Delete')}}</a>
+                                        @endcan
                                     </td>
                                 </tr>
+                                @endcan
                             @endforeach
                             </tbody>
                         </table>

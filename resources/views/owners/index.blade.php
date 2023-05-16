@@ -28,14 +28,20 @@
                             </thead>
                             <tbody>
                             @foreach($owners as $owner)
+                                @can('viewAny', $owner)
                                 <tr class="border-b dark:border-gray-700">
                                     <td class="px-4 py-2 dark:text-gray-300">{{ $owner->name }}</td>
                                     <td class="px-4 py-2 dark:text-gray-300">{{ $owner->surname }}</td>
                                     <td>
+                                        @can('update', $owner)
                                         <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href="{{route('owners.edit', $owner->id)}}">{{__('Edit')}}</a>
+                                        @endcan
+                                        @can('delete', $owner)
                                         <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" href="{{route('owners.delete',$owner->id)}}">{{__('Delete')}}</a>
+                                        @endcan
                                     </td>
                                 </tr>
+                                @endcan
                             @endforeach
                             </tbody>
                         </table>

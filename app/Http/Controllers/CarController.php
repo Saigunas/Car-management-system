@@ -6,7 +6,10 @@ use App\Http\Requests\CarRequest;
 use App\Models\Car;
 use App\Models\CarPhoto;
 use App\Models\Owner;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class CarController extends Controller
 {
@@ -28,17 +31,22 @@ class CarController extends Controller
         ]);
     }
     public function edit($id){
+        $car = Car::with('photos')->find($id);
+        $this->authorize('update', $car);
+
         $owners=Owner::all();
 
         return view("cars.edit",[
-            "car"=>Car::with('photos')->find($id),
+            "car"=>$car,
             "owners" => $owners,
         ]);
     }
 
     public function update($id, CarRequest $request){
+        $car = Car::with('photos')->find($id);
+        $this->authorize('update', $car);
+
         $request->validate($request->rules(), $request->messages());
-        $car=Car::find($id);
         $car->reg_number=$request->reg_number;
         $car->brand=$request->brand;
         $car->owner_id=$request->owner_id;
@@ -76,6 +84,8 @@ class CarController extends Controller
         return redirect()->route("cars.index");
     }
     public function delete($id){
+        $car=Car::find($id);
+        $this->authorize('delete', $car);
         Car::destroy($id);
         return redirect()->route("cars.index");
     }

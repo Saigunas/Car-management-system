@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Owner;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,9 +15,11 @@ class OwnerFactory extends Factory
 
     public function definition()
     {
+        $user_id = User::inRandomOrder()->first()->id;
         return [
             'name'=>fake()->firstName(),
             'surname'=>fake()->lastName(),
+            'user_id' => $user_id,
         ];
     }
 }

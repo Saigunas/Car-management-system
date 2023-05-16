@@ -29,7 +29,7 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function ($model) {
-            if (!in_array($model->role, [UserRole::ADMIN, UserRole::USER])) {
+            if (!in_array($model->role, [UserRole::ADMIN, UserRole::USER, UserRole::READ_USER])) {
                 throw new \InvalidArgumentException('Invalid role value');
             }
         });
@@ -53,4 +53,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'role' => 'string',
     ];
+
+    public function owners(){
+        return $this->hasMany(Owner::class);
+    }
 }

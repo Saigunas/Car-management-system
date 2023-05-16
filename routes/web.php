@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth', 'check.role:admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::post('/owners/save',[OwnerController::class, 'save'])->name('owners.save');
     Route::get('/owners/{id}/edit',[OwnerController::class, 'edit'])->name('owners.edit');
     Route::post('/owners/{id}/update',[OwnerController::class,'update'])->name('owners.update');

@@ -22,9 +22,16 @@ To get started with the project, follow these steps:
 
 You should now be able to access the project at `http://localhost:8000`.
 
-Use the following log in to access update and delete operations:
+Use the following log ins:
 
 `Log in: admin@admin.com`
 
 `Password: admin`
 
+`Log in: user@user.com`
+
+`Password: admin`
+
+`Log in: readUser@readUser.com`
+
+`Password: readUser`

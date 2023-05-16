@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OwnerRequest;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OwnerController extends Controller
 {
+
     public function index(Request $request)
     {
         $filter=$request->session()->get('filterOwners', (object)['name'=>null]);
@@ -28,12 +30,18 @@ class OwnerController extends Controller
         ]);
     }
     public function edit($id){
+        $owner=Owner::find($id);
+        $this->authorize('update', $owner);
+
         return view("owners.edit",[
             "owner"=>Owner::find($id)
         ]);
     }
 
     public function update($id, OwnerRequest $request){
+        $owner=Owner::find($id);
+        $this->authorize('update', $owner);
+
         $request->validate($request->rules(), $request->messages());
         $owner=Owner::find($id);
         $owner->name=$request->name;
@@ -51,6 +59,9 @@ class OwnerController extends Controller
         return redirect()->route("owners.index");
     }
     public function delete($id){
+        $owner=Owner::find($id);
+        $this->authorize('delete', $owner);
+
         Owner::destroy($id);
         return redirect()->route("owners.index");
     }
