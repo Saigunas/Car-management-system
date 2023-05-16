@@ -22,7 +22,7 @@ To get started with the project, follow these steps:
 
 You should now be able to access the project at `http://localhost:8000`.
 
-Use the following log ins:
+Use one of the following log ins:
 
 `Log in: admin@admin.com`
 
@@ -35,3 +35,8 @@ Use the following log ins:
 `Log in: readUser@readUser.com`
 
 `Password: readUser`
+
+## Problems
+
+It is possible that some tailwind classes will not load upon launching the project. If that is the case, please run `npm update tailwindcss`.
+
