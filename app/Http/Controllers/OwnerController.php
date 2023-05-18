@@ -55,6 +55,7 @@ class OwnerController extends Controller
         $owner=new Owner();
         $owner->name=$request->name;
         $owner->surname=$request->surname;
+        $owner->user_Id=Auth::id();
         $owner->save();
         return redirect()->route("owners.index");
     }
